@@ -1,1 +1,12 @@
-<p>navigation works!</p>
+<section class="flex gap-4 items-center px-6 pt-20 pb-6">
+    <button
+        class="bg-gray-900 hover:bg-green-700 text-white font-medium text-sm px-6 py-3 rounded-md transition-colors duration-200"
+        routerLink="/users" routerLinkActive="bg-green-700" [routerLinkActiveOptions]="{ exact: true }">
+        მომხმარებლები
+    </button>
+    <button
+        class="bg-gray-900 hover:bg-green-700 text-white font-medium text-sm px-6 py-3 rounded-md transition-colors duration-200"
+        routerLink="/posts" routerLinkActive="bg-green-700" [routerLinkActiveOptions]="{ exact: true }">
+        პოსტები
+    </button>
+</section>

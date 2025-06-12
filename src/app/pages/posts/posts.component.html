@@ -1,1 +1,50 @@
-<p>posts works!</p>
+<!-- Posts Table -->
+<div class="max-w-6xl mx-auto px-6 pb-6" *ngIf="!id">
+    <div class="bg-white rounded-md border border-gray-200 overflow-scroll">
+        <table class="w-full whitespace-nowrap">
+            <thead class="bg-gray-50 border-b border-gray-200">
+                <tr>
+                    <th class="py-3 px-4 text-left font-medium text-gray-600 text-sm uppercase tracking-wide">მომხმარებლის სახელი</th>
+                    <th class="py-3 px-4 text-left font-medium text-gray-600 text-sm uppercase tracking-wide">პოსტის სათაური</th>
+                    <th class="py-3 px-4 text-left font-medium text-gray-600 text-sm uppercase tracking-wide"></th>
+                </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-100">
+                <tr *ngFor="let post of postAndUser" class="hover:bg-gray-50 transition-colors duration-150">
+                    <td class="py-4 px-4 text-gray-900 font-medium text-sm">{{ post.username }}</td>
+                    <td class="py-4 px-4 text-gray-700 text-sm">{{ post.title }}</td>
+                    <td class="py-4 px-4">
+                        <button (click)="postDetails(post.postId)"
+                            class="px-3 py-1 bg-gray-100 text-gray-700 rounded-md hover:bg-gray-200 transition-colors duration-200 text-sm font-medium">
+                            დეტალურად
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- Post Pop up -->
+<div class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-40 z-50 p-4" *ngIf="showPostDetails">
+    <div class="bg-white rounded-md border border-gray-200 p-6 w-full max-w-lg">
+        <h2 class="text-lg font-semibold text-gray-900 mb-3">{{ selectedPost?.title }}</h2>
+        <p class="text-gray-700 text-sm leading-relaxed mb-6">{{ selectedPost?.body }}</p>
+        <div class="flex justify-end">
+            <button (click)="closePostDetails()"
+                class="px-4 py-2 bg-gray-900 text-white rounded-md hover:bg-gray-800 transition-colors duration-200 text-sm font-medium">
+                დახურვა
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- Post Cards -->
+<div class="max-w-6xl mx-auto px-6 pb-6" *ngIf="id">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div *ngFor="let post of posts" class="bg-white border border-gray-200 rounded-md p-5">
+            <h2 class="text-base font-semibold text-gray-900 mb-3 leading-tight">{{ post.title }}</h2>
+            <p class="text-gray-600 text-sm leading-relaxed">{{ post.body }}</p>
+        </div>
+    </div>
+</div>

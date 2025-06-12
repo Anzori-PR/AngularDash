@@ -1,1 +1,65 @@
-<p>users works!</p>
+<!-- Search Section -->
+<div class="max-w-6xl mx-auto px-6 py-6">
+    <div class="flex items-center border border-gray-200 rounded-md overflow-hidden bg-white">
+        <input type="text" [(ngModel)]="searchText" (keydown.enter)="filteredUsers()"
+            placeholder="ძიება მომხმარებლით ან ელ.ფოსტით..."
+            class="w-full px-4 py-3 outline-none text-gray-700 placeholder-gray-400 text-sm" />
+        <button (click)="filteredUsers()"
+            class="bg-gray-900 hover:bg-gray-800 text-white px-6 py-3 transition-colors duration-200 flex items-center text-sm font-medium">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd"
+                    d="M12.9 14.32a8 8 0 111.414-1.414l4.387 4.387a1 1 0 01-1.414 1.414l-4.387-4.387zM14 8a6 6 0 11-12 0 6 6 0 0112 0z"
+                    clip-rule="evenodd" />
+            </svg>
+            ძიება
+        </button>
+    </div>
+</div>
+
+<!-- Table Section -->
+<div class="max-w-6xl mx-auto px-6 pb-6">
+    <div class="bg-white rounded-md border border-gray-200 overflow-scroll">
+        <table class="w-full whitespace-nowrap">
+            <thead class="bg-gray-50 border-b border-gray-200">
+                <tr>
+                    <th class="py-3 px-4 text-left font-medium text-gray-600 text-sm uppercase tracking-wide">სახელი
+                        გვარი</th>
+                    <th class="py-3 px-4 text-left font-medium text-gray-600 text-sm uppercase tracking-wide">ტელ.
+                        ნომერი</th>
+                    <th class="py-3 px-4 text-left font-medium text-gray-600 text-sm uppercase tracking-wide">მეილი</th>
+                    <th class="py-3 px-4 text-left font-medium text-gray-600 text-sm uppercase tracking-wide">კომპანიის
+                        სახელი</th>
+                    <th class="py-3 px-4 text-left font-medium text-gray-600 text-sm uppercase tracking-wide">პოსტები
+                    </th>
+                    <th class="py-3 px-4 text-left font-medium text-gray-600 text-sm uppercase tracking-wide">todo lists
+                    </th>
+                </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-100">
+                <tr *ngFor="let user of filtered" class="hover:bg-gray-50 transition-colors duration-150">
+                    <td class="py-4 px-4 text-gray-900 font-medium text-sm">{{ user.name }}</td>
+                    <td class="py-4 px-4 text-gray-600 text-sm">{{ user.phone }}</td>
+                    <td class="py-4 px-4">
+                        <a href="mailto:{{ user.email }}"
+                            class="text-blue-600 hover:text-blue-800 text-sm transition-colors duration-200">
+                            {{ user.email }}
+                        </a>
+                    </td>
+                    <td class="py-4 px-4 text-gray-900 text-sm">{{ user.company?.name || '-' }}</td>
+                    <td class="py-4 px-4">
+                        <button (click)="goToPosts(user.id)"
+                            class="px-3 py-1 bg-gray-100 text-gray-700 rounded-md hover:bg-gray-200 transition-colors duration-200 text-sm font-medium">
+                            პოსტები
+                        </button>
+                    </td>
+                    <td class="py-4 px-4">
+                        <button (click)="toDoList(user.id)"
+                            class="px-3 py-1 bg-gray-100 text-gray-700 rounded-md hover:bg-gray-200 transition-colors duration-200 text-sm font-medium">
+                            TODO-ს ნახვა
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
